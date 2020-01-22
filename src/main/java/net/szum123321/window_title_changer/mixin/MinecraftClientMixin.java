@@ -18,6 +18,7 @@ public class MinecraftClientMixin {
 
     @Inject(method = "getWindowTitle", at = @At("HEAD"), cancellable = true)
     public void getAlternativeWindowTitle(CallbackInfoReturnable<String> ci){
+
         if(WindowTitleChanger.resources.titleIsAvailable())
             ci.setReturnValue(WindowTitleChanger.resources.getNewTitle());
     }

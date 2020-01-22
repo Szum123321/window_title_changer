@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Window Title Changer",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": " A simple fabric based mod for changing minecraft window title and icon ",
   "authors": [
     "Szum123321"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/window-title-changer",
+    "sources": "https://github.com/Szum123321/window_title_changer"
   },
 
   "license": "GPL-v3",
@@ -28,7 +28,7 @@
   "depends": {
     "fabricloader": ">=0.7.2",
     "fabric": "*",
-    "minecraft": "1.15.x"
+    "minecraft": "1.15.2"
   },
   "suggests": {
     "flamingo": "*"

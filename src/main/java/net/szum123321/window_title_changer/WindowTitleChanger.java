@@ -5,7 +5,6 @@ import net.fabricmc.api.ClientModInitializer;
 
 import java.io.IOException;
 
-
 public class WindowTitleChanger implements ClientModInitializer {
     public static final String MOD_ID = "window_title_changer";
     public static ResourceProvider resources;
