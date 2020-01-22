@@ -1,7 +1,7 @@
 # Window Title Changer
 
-[![Downloads](http://cf.way2muchnoise.eu/full_*_downloads.svg)
-![Available for](http://cf.way2muchnoise.eu/versions/*.svg)](https://www.curseforge.com/minecraft/mc-mods/*)
+[![Downloads](http://cf.way2muchnoise.eu/full_359527_downloads.svg)
+![Available for](http://cf.way2muchnoise.eu/versions/359527.svg)](https://www.curseforge.com/minecraft/mc-mods/window-title-changer)
 
 This is simple mod that changes Minecraft window title and icon. It is only client side.
 
