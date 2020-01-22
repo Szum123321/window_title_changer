@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "window_title_changer",
+  "version": "${version}",
+
+  "name": "Window Title Changer",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Szum123321"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "GPL-v3",
+
+  "environment": "CLIENT",
+  "entrypoints": {
+    "client": [
+      "net.szum123321.window_title_changer.WindowTitleChanger"
+    ]
+  },
+  "mixins": [
+    "window_title_changer.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.2",
+    "fabric": "*",
+    "minecraft": "1.15.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
