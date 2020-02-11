@@ -1,7 +1,6 @@
 package net.szum123321.window_title_changer.mixin;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.RunArgs;
 import net.minecraft.client.util.Window;
 import net.szum123321.window_title_changer.WindowTitleChanger;
 import org.spongepowered.asm.mixin.Mixin;
