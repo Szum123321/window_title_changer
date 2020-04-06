@@ -7,7 +7,7 @@ This is simple mod that changes Minecraft window title and icon. It is only clie
 
 To change window title to one of your desire just make sure that line _changeTitle_ is true and changed _windowTitle_ to whatever you want.
 
-If you would like to change window icon than place 16x16 and 32x32 version inside icons folder change _icon16x16_ and _icon32x32_ accordingly and enable.
+If you would like to change window icon than place 16x16 and 32x32 version inside icons folder change _icon16x16_ and _icon32x32_ accordingly and enable. Those ineed to be in .png format.
 
 All of above applies to _WindowTitleChanger_ directory inside your game config.
 
