@@ -3,6 +3,9 @@ package net.szum123321.window_title_changer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.resource.ResourceType;
+import net.minecraft.util.Identifier;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -73,20 +76,28 @@ public class ResourceProvider {
         File f2 = mainPath.resolve("icons/" + cc.icon32x32).toFile();
 
         if(!(f1.exists() && f2.exists()) && cc.changeIcons){
-            WindowTitleChanger.logger.error("Error! no icons found!");
+            WindowTitleChanger.logger.error("Error! no icons found! Default icons will be used instead.");
         }
 
         return f1.exists() && f2.exists() && cc.changeIcons;
     }
 
-    public InputStream get16Icon() throws FileNotFoundException {
+    public InputStream get16Icon() throws IOException {
         File f = mainPath.resolve("icons/" + cc.icon16x16).toFile();
+
+        if(!f.exists()){
+            return MinecraftClient.getInstance().getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, new Identifier("icons/icon_16x16.png"));
+        }
 
         return new FileInputStream(f);
     }
 
-    public InputStream get32Icon() throws FileNotFoundException {
+    public InputStream get32Icon() throws IOException {
         File f = mainPath.resolve("icons/" + cc.icon32x32).toFile();
+
+        if(!f.exists()){
+            return MinecraftClient.getInstance().getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, new Identifier("icons/icon_32x32.png"));
+        }
 
         return new FileInputStream(f);
     }
