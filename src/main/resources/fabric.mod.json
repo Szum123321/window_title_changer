@@ -4,18 +4,19 @@
   "version": "${version}",
 
   "name": "Window Title Changer",
-  "description": " A simple fabric based mod for changing minecraft window title and icon ",
+  "description": " A simple fabric mod for changing minecraft window title and icon",
   "authors": [
     "Szum123321"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/window-title-changer",
-    "sources": "https://github.com/Szum123321/window_title_changer"
+    "sources": "https://github.com/Szum123321/window_title_changer",
+    "issues": "https://github.com/Szum123321/window_title_changer/issues"
   },
 
   "license": "GPL-v3",
 
-  "environment": "CLIENT",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "net.szum123321.window_title_changer.WindowTitleChanger"
@@ -26,8 +27,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.2",
+    "fabricloader": ">=0.8.8",
     "fabric": "*",
-    "minecraft": "1.16.*"
+    "minecraft": "1.16.1"
   }
 }

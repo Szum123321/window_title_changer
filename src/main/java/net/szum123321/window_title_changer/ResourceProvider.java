@@ -9,10 +9,10 @@ import net.minecraft.util.Identifier;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.util.Optional;
 
 public class ResourceProvider {
-    private Path mainPath;
-    private ConfigClass cc;
+    private final Path mainPath;
     private boolean ok;
 
     public ResourceProvider(){
@@ -22,94 +22,56 @@ public class ResourceProvider {
             mainPath.toFile().mkdirs();
         }
 
-        ok = false;
+        File icons = mainPath.resolve("icons/").toFile();
+
+        if(!icons.exists())
+            icons.mkdirs();
     }
 
-    public void init() throws IOException {
-        try{
-            ok = true;
-            File configFile = mainPath.resolve(WindowTitleChanger.MOD_ID + ".json").toFile();
-
-            Gson parser = new GsonBuilder().setPrettyPrinting().create();
-
-            if(!configFile.exists()){
-                configFile.getParentFile().mkdirs();
-                configFile.createNewFile();
-
-                FileWriter fw = new FileWriter(configFile);
-                fw.write(parser.toJson(new ConfigClass()));
-                fw.flush();
-                fw.close();
-            }
-
-            cc = parser.fromJson(new FileReader(configFile), ConfigClass.class);
-
-            File icons = mainPath.resolve("icons/").toFile();
-
-            if(!icons.exists())
-                icons.mkdirs();
-        }catch (Exception e){
-            ok = false;
-            throw e;
-        }
+    public boolean titleIsAvailable() {
+        return !WindowTitleChanger.config.windowTitle.equals("") && WindowTitleChanger.config.changeTitle;
     }
 
-    public boolean titleIsAvailable(){
-        if(!ok)
-            return false;
-
-        return !cc.windowTitle.equals("") && cc.changeTitle;
+    public String getNewTitle() {
+        return WindowTitleChanger.config.windowTitle;
     }
 
-    public String getNewTitle(){
-        if(!ok)
-            return "";
+    public boolean iconsAreAvailableAndShouldBeChanged() {
+        File f1 = mainPath.resolve("icons/" + WindowTitleChanger.config.icon16x16).toFile();
+        File f2 = mainPath.resolve("icons/" + WindowTitleChanger.config.icon32x32).toFile();
 
-        return cc.windowTitle;
-    }
-
-    public boolean iconsAreAvailable(){
-        if(!ok)
-            return false;
-
-        File f1 = mainPath.resolve("icons/" + cc.icon16x16).toFile();
-        File f2 = mainPath.resolve("icons/" + cc.icon32x32).toFile();
-
-        if(!(f1.exists() && f2.exists()) && cc.changeIcons){
+        if(!(f1.exists() && f2.exists()) && WindowTitleChanger.config.changeIcons){
             WindowTitleChanger.logger.error("Error! no icons found! Default icons will be used instead.");
         }
 
-        return f1.exists() && f2.exists() && cc.changeIcons;
+        return f1.exists() && f2.exists() && WindowTitleChanger.config.changeIcons;
     }
 
-    public InputStream get16Icon() throws IOException {
-        File f = mainPath.resolve("icons/" + cc.icon16x16).toFile();
+    public Optional<InputStream> get16Icon() {
+        File f = mainPath.resolve("icons/" + WindowTitleChanger.config.icon16x16).toFile();
 
-        if(!f.exists()){
-            return MinecraftClient.getInstance().getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, new Identifier("icons/icon_16x16.png"));
+        if(!f.exists())
+            return Optional.empty();
+
+        try {
+            return Optional.of(new FileInputStream(f));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return Optional.empty();
         }
-
-        return new FileInputStream(f);
     }
 
-    public InputStream get32Icon() throws IOException {
-        File f = mainPath.resolve("icons/" + cc.icon32x32).toFile();
+    public Optional<InputStream> get32Icon() {
+        File f = mainPath.resolve("icons/" + WindowTitleChanger.config.icon32x32).toFile();
 
-        if(!f.exists()){
-            return MinecraftClient.getInstance().getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, new Identifier("icons/icon_32x32.png"));
+        if(!f.exists())
+            return Optional.empty();
+
+        try {
+            return Optional.of(new FileInputStream(f));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return Optional.empty();
         }
-
-        return new FileInputStream(f);
-    }
-
-    private static class ConfigClass{
-        public Boolean changeTitle = true;
-
-        public String windowTitle = "Minecraft";
-
-        public Boolean changeIcons = false;
-
-        public String icon16x16 = "";
-        public String icon32x32 = "";
     }
 }
