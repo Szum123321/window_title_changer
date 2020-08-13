@@ -1,11 +1,6 @@
 package net.szum123321.window_title_changer;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
 
 import java.io.*;
 import java.nio.file.Path;

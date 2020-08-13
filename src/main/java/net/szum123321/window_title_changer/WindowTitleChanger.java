@@ -4,9 +4,6 @@ import io.github.cottonmc.cotton.config.ConfigManager;
 import io.github.cottonmc.cotton.logging.ModLogger;
 import net.fabricmc.api.ClientModInitializer;
 
-import java.io.File;
-import java.io.IOException;
-
 public class WindowTitleChanger implements ClientModInitializer {
     public static final String MOD_ID = "window_title_changer";
 

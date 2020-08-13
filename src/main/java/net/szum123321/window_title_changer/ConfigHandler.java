@@ -11,7 +11,7 @@ public class ConfigHandler {
 
 	@Comment("\nThis is what window title will say.\n" +
 			"You can add '{version}' to display your minecraft version.\n")
-	public String windowTitle = "Minecraft";
+	public String windowTitle = "Minecraft {version}";
 
 	@Comment("\nShould window icon be changed?\n" +
 			"REMEMBER! You have to provide both 16x16 and 32x32 icon in .png format!\n")
