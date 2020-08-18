@@ -31,31 +31,23 @@ public class ResourceProvider {
         return areIconsAvailable && WindowTitleChanger.config.changeIcons;
     }
 
-    public Optional<InputStream> get16Icon() {
+    public InputStream get16Icon() {
         File f = mainPath.resolve("icons/" + WindowTitleChanger.config.icon16x16).toFile();
 
-        if(!f.exists())
-            return Optional.empty();
-
         try {
-            return Optional.of(new FileInputStream(f));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return Optional.empty();
+            return new FileInputStream(f);
+        } catch (FileNotFoundException ignored) {
+            return null;
         }
     }
 
-    public Optional<InputStream> get32Icon() {
+    public InputStream get32Icon() {
         File f = mainPath.resolve("icons/" + WindowTitleChanger.config.icon32x32).toFile();
 
-        if(!f.exists())
-            return Optional.empty();
-
         try {
-            return Optional.of(new FileInputStream(f));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return Optional.empty();
+            return new FileInputStream(f);
+        } catch (FileNotFoundException ignored) {
+            return null;
         }
     }
 

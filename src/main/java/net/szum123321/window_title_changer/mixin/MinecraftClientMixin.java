@@ -36,9 +36,12 @@ public abstract class MinecraftClientMixin {
     }
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"))
-    public void setAlternativeWindowIcon(Window window, InputStream inputStream1, InputStream inputStream2){
+    public void setAlternativeWindowIcon(Window window, InputStream inputStream1, InputStream inputStream2) {
         if(WindowTitleChanger.resources.iconsAreAvailableAndShouldBeChanged()) {
-            window.setIcon(WindowTitleChanger.resources.get16Icon().orElse(inputStream1), WindowTitleChanger.resources.get32Icon().orElse(inputStream2));
+            window.setIcon(
+                    WindowTitleChanger.resources.get16Icon(),
+                    WindowTitleChanger.resources.get32Icon()
+            );
         } else {
             window.setIcon(inputStream1, inputStream2);
         }
