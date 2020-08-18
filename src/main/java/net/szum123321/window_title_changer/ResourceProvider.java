@@ -4,23 +4,19 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.Optional;
 
 public class ResourceProvider {
     private final Path mainPath;
-    private boolean ok;
+    private final Path iconsFolderPath;
+    private final boolean areIconsAvailable;
 
-    public ResourceProvider(){
-        mainPath = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("WindowTitleChanger/");
+    public ResourceProvider() {
+        mainPath = FabricLoader.getInstance().getConfigDir().resolve("WindowTitleChanger/").toAbsolutePath();
+        iconsFolderPath = mainPath.resolve("icons");
 
-        if(!mainPath.toFile().exists()){
-            mainPath.toFile().mkdirs();
-        }
+        createFolders();
 
-        File icons = mainPath.resolve("icons/").toFile();
-
-        if(!icons.exists())
-            icons.mkdirs();
+        areIconsAvailable = checkIcons();
     }
 
     public boolean titleIsAvailable() {
@@ -32,14 +28,7 @@ public class ResourceProvider {
     }
 
     public boolean iconsAreAvailableAndShouldBeChanged() {
-        File f1 = mainPath.resolve("icons/" + WindowTitleChanger.config.icon16x16).toFile();
-        File f2 = mainPath.resolve("icons/" + WindowTitleChanger.config.icon32x32).toFile();
-
-        if(!(f1.exists() && f2.exists()) && WindowTitleChanger.config.changeIcons){
-            WindowTitleChanger.logger.error("Error! no icons found! Default icons will be used instead.");
-        }
-
-        return f1.exists() && f2.exists() && WindowTitleChanger.config.changeIcons;
+        return areIconsAvailable && WindowTitleChanger.config.changeIcons;
     }
 
     public Optional<InputStream> get16Icon() {
@@ -68,5 +57,54 @@ public class ResourceProvider {
             e.printStackTrace();
             return Optional.empty();
         }
+    }
+
+    private void createFolders() {
+        if(!mainPath.toFile().exists())
+            mainPath.toFile().mkdirs();
+
+        File icons = iconsFolderPath.toFile();
+
+        if(!icons.exists())
+            icons.mkdirs();
+    }
+
+    private boolean checkIcons() {
+        boolean ok = true;
+
+        if(WindowTitleChanger.config.icon16x16.equals("")) {
+            WindowTitleChanger.logger.error("No 16x16 icon provided!");
+            ok = false;
+        } else {
+            File f = iconsFolderPath.resolve(WindowTitleChanger.config.icon16x16).toFile();
+
+            if(!isValidIcon(f)) {
+                WindowTitleChanger.logger.error("File %s is not a valid icon!", f);
+                ok = false;
+            }
+        }
+
+        if(WindowTitleChanger.config.icon32x32.equals("")) {
+            WindowTitleChanger.logger.error("No 32x32 icon provided!");
+            ok = false;
+        } else {
+            File f = iconsFolderPath.resolve(WindowTitleChanger.config.icon32x32).toFile();
+
+            if(!isValidIcon(f)) {
+                WindowTitleChanger.logger.error("File %s is not a valid icon!", f);
+                ok = false;
+            }
+        }
+
+        if(!ok) {
+            WindowTitleChanger.logger.error("Because of the above error, window icon won't be changed!");
+            WindowTitleChanger.logger.error("If you're playing on a modpack, please report this error to modpack's creator!");
+        }
+
+        return ok;
+    }
+
+    private boolean isValidIcon(File f) {
+        return f.exists() && !f.isDirectory() && f.getName().substring(f.getName().lastIndexOf(".") + 1).equals("png");
     }
 }
