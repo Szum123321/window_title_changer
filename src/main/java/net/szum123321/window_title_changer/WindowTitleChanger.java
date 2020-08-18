@@ -5,16 +5,13 @@ import io.github.cottonmc.cotton.logging.ModLogger;
 import net.fabricmc.api.ClientModInitializer;
 
 public class WindowTitleChanger implements ClientModInitializer {
-    public static final String MOD_ID = "window_title_changer";
-
+    public static ModLogger logger = new ModLogger("window_title_changer", "Window Title Changer");
     public static ConfigHandler config;
     public static ResourceProvider resources;
-    public static ModLogger logger;
 
     @Override
     public void onInitializeClient() {
-        logger = new ModLogger(this.getClass());
-        resources = new ResourceProvider();
         config = ConfigManager.loadConfig(ConfigHandler.class);
+        resources = new ResourceProvider();
     }
 }
