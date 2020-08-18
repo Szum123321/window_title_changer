@@ -17,6 +17,8 @@ public class ConfigHandler {
 			"REMEMBER! You have to provide both 16x16 and 32x32 icon in .png format!\n")
 	public Boolean changeIcons = false;
 
+	@Comment("\nHere you may provide names of your icons relative to icons directory in WTC's config folder\n" +
+			"REMEMBER! You have to provide both 16x16 and 32x32 icon in .png format!\n")
 	public String icon16x16 = "";
 	public String icon32x32 = "";
 }
