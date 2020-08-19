@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Window Title Changer",
-  "description": " A simple fabric mod for changing minecraft window title and icon",
+  "description": "A simple fabric mod for changing minecraft window title and icon",
   "authors": [
     "Szum123321"
   ],
