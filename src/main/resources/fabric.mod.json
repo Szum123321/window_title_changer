@@ -15,6 +15,7 @@
   },
 
   "license": "GPL-v3",
+  "icon": "assets/window_title_changer/icon.png",
 
   "environment": "client",
   "entrypoints": {
