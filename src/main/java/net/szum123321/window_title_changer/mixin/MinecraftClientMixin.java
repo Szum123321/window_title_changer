@@ -21,7 +21,7 @@ public abstract class MinecraftClientMixin {
 
     @Inject(method = "getWindowTitle", at = @At("HEAD"), cancellable = true)
     public void getAlternativeWindowTitle(CallbackInfoReturnable<String> ci){
-        String builder = WindowTitleChanger.resources.getNewTitle();
+        String builder = WindowTitleChanger.config.windowTitle;
 
         builder = builder.replace("{version}", SharedConstants.getGameVersion().getId());
 
@@ -31,7 +31,7 @@ public abstract class MinecraftClientMixin {
             builder = builder.replace("{env}", "singleplayer");
         }
 
-        if(WindowTitleChanger.resources.titleIsAvailable())
+        if(WindowTitleChanger.config.changeTitle)
             ci.setReturnValue(builder);
     }
 

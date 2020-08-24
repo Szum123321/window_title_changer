@@ -21,14 +21,6 @@ public class ResourceProvider {
         areIconsAvailable = checkIcons();
     }
 
-    public boolean titleIsAvailable() {
-        return !WindowTitleChanger.config.windowTitle.equals("") && WindowTitleChanger.config.changeTitle;
-    }
-
-    public String getNewTitle() {
-        return WindowTitleChanger.config.windowTitle;
-    }
-
     public boolean iconsAreAvailableAndShouldBeChanged() {
         return areIconsAvailable && WindowTitleChanger.config.changeIcons;
     }
