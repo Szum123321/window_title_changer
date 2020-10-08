@@ -12,3 +12,6 @@ If you would like to change window icon than place 16x16 and 32x32 version insid
 All of above applies to _WindowTitleChanger_ directory inside your game config.
 
 Feel free to use this mod inside your modpack!
+
+And here's a link to my [discord channel](https://discord.gg/ktasEy4) 
+
