@@ -12,6 +12,6 @@ public class WindowTitleChanger implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         config = ConfigManager.loadConfig(ConfigHandler.class);
-        resources = new ResourceProvider();
+        resources = new ResourceProvider(config.changeIcons);
     }
 }

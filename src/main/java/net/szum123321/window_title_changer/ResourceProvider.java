@@ -3,6 +3,7 @@ package net.szum123321.window_title_changer;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -10,39 +11,28 @@ import java.util.stream.Stream;
 public class ResourceProvider {
     private final Path mainPath;
     private final Path iconsFolderPath;
-    private final boolean areIconsAvailable;
 
-    public ResourceProvider() {
+    private boolean changeIcons;
+
+    public ResourceProvider(boolean changeIcons) {
         mainPath = FabricLoader.getInstance().getConfigDir().resolve("WindowTitleChanger/").toAbsolutePath();
         iconsFolderPath = mainPath.resolve("icons");
 
         createFolders();
 
-        areIconsAvailable = checkIcons();
+        if(changeIcons) this.changeIcons = checkIcons();
     }
 
-    public boolean iconsAreAvailableAndShouldBeChanged() {
-        return areIconsAvailable && WindowTitleChanger.config.changeIcons;
+    public boolean changeIcons() {
+        return changeIcons;
     }
 
-    public InputStream get16Icon() {
-        File f = mainPath.resolve("icons/" + WindowTitleChanger.config.icon16x16).toFile();
-
-        try {
-            return new FileInputStream(f);
-        } catch (FileNotFoundException ignored) {
-            return null;
-        }
+    public InputStream get16Icon() throws IOException {
+        return Files.newInputStream(mainPath.resolve("icons/").resolve(WindowTitleChanger.config.icon16x16));
     }
 
-    public InputStream get32Icon() {
-        File f = mainPath.resolve("icons/" + WindowTitleChanger.config.icon32x32).toFile();
-
-        try {
-            return new FileInputStream(f);
-        } catch (FileNotFoundException ignored) {
-            return null;
-        }
+    public InputStream get32Icon() throws IOException {
+        return Files.newInputStream(mainPath.resolve("icons/").resolve(WindowTitleChanger.config.icon32x32));
     }
 
     private void createFolders() {
