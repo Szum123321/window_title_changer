@@ -25,14 +25,13 @@ public abstract class MinecraftClientMixin {
 
         builder = builder.replace("{version}", SharedConstants.getGameVersion().getId());
 
-        if(this.server != null && this.server.isRemote()){
+        if(this.server != null && this.server.isRemote()) {
             builder = builder.replace("{env}", "server");
-        }else{
+        } else {
             builder = builder.replace("{env}", "singleplayer");
         }
 
-        if(WindowTitleChanger.config.changeTitle)
-            ci.setReturnValue(builder);
+        if(WindowTitleChanger.config.changeTitle) ci.setReturnValue(builder);
     }
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"))
