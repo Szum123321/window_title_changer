@@ -13,5 +13,5 @@ All of above applies to _WindowTitleChanger_ directory inside your game config.
 
 Feel free to use this mod inside your modpack!
 
-And here's a link to my [discord channel](https://discord.gg/ktasEy4) 
+And here's a link to my [discord server](https://discord.gg/ktasEy4) 
 
