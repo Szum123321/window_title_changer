@@ -61,9 +61,9 @@ public class ResourceProvider {
         }
 
         if(!builder.isEmpty()) {
-            builder.buildStream().forEach(WindowTitleChanger.logger::error);
-            WindowTitleChanger.logger.error("Because of the above error, window icon won't be changed!");
-            WindowTitleChanger.logger.error("If you're playing on a modpack, please report this error to modpack's creator!");
+            builder.buildStream().forEach(WindowTitleChanger.LOGGER::error);
+            WindowTitleChanger.LOGGER.error("Because of the above error, window icon won't be changed!");
+            WindowTitleChanger.LOGGER.error("If you're playing on a modpack, please report this error to modpack's creator!");
         }
 
         return builder.isEmpty();
