@@ -23,13 +23,25 @@ public abstract class MinecraftClientMixin {
     @Inject(method = "getWindowTitle", at = @At("HEAD"), cancellable = true)
     public void getAlternativeWindowTitle(CallbackInfoReturnable<String> ci){
         String builder = WindowTitleChanger.config.windowTitle;
+        
+        public static final MinecraftClient MC = MinecraftClient.getInstance();
 
         builder = builder.replace("{version}", SharedConstants.getGameVersion().getId());
 
-        if(this.server != null && this.server.isRemote()) {
-            builder = builder.replace("{env}", "server");
-        } else {
+        boolean issinglePlayer = MC.isInSingleplayer();
+        
+    	String serverip = "";
+    	if (MC.getCurrentServerEntry() != null) {
+    		serverip = MC.getCurrentServerEntry().address;
+    	}
+       
+        if(MC.getCurrentServerEntry() != null) {
+            builder = builder.replace("{env}", serverip);
+        } else if(issinglePlayer) {
             builder = builder.replace("{env}", "singleplayer");
+        }
+        else {
+        	builder = builder.replace("{env}", "Main Menu");
         }
 
         if(WindowTitleChanger.config.changeTitle) ci.setReturnValue(builder);
