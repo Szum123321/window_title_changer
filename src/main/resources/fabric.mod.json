@@ -29,6 +29,14 @@
 
   "depends": {
     "fabricloader": ">=0.8.8",
-    "minecraft": "1.17.*"
+    "minecraft": "1.18.*",
+    "java": ">=17"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/ktasEy4"
+      }
+    }
   }
 }
