@@ -15,3 +15,8 @@ Feel free to use this mod inside your modpack!
 
 And here's a link to my [discord server](https://discord.gg/ktasEy4) 
 
+
+If you'd like to support me:  
+[![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/bc1qwnqrdv5rs36tkfgxmnkw5f7qx4nhsncy5kj69s)](https://en.cryptobadges.io/donate/bc1qwnqrdv5rs36tkfgxmnkw5f7qx4nhsncy5kj69s)
+[![Donate with Ethereum](https://en.cryptobadges.io/badge/micro/0xF196c12b0A013d91015c541E63A87BA636851871)](https://en.cryptobadges.io/donate/0xF196c12b0A013d91015c541E63A87BA636851871)
+
