@@ -1,6 +1,7 @@
 package net.szum123321.window_title_changer;
 
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.resource.InputSupplier;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -27,12 +28,12 @@ public class ResourceProvider {
         return changeIcons;
     }
 
-    public InputStream get16Icon() throws IOException {
-        return Files.newInputStream(mainPath.resolve("icons/").resolve(WindowTitleChanger.config.icon16x16));
+    public InputSupplier<InputStream> get16Icon() {
+        return () -> Files.newInputStream(mainPath.resolve("icons/").resolve(WindowTitleChanger.config.icon16x16));
     }
 
-    public InputStream get32Icon() throws IOException {
-        return Files.newInputStream(mainPath.resolve("icons/").resolve(WindowTitleChanger.config.icon32x32));
+    public InputSupplier<InputStream> get32Icon() {
+        return () -> Files.newInputStream(mainPath.resolve("icons/").resolve(WindowTitleChanger.config.icon32x32));
     }
 
     private void createFolders() {
